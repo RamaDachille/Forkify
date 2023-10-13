@@ -19,7 +19,19 @@ const showRecipe = async function () {
     );
     const data = await res.json();
 
-    console.log(res, data);
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+    let { recipe } = data.data;
+    recipe = {
+      id: recipe.id,
+      title: recipe.title,
+      publisher: recipe.publisher,
+      sourceUrl: recipe.source_url,
+      image: recipe.image_url,
+      servings: recipe.cooking_time,
+      ingredients: recipe.ingredients,
+    };
+    console.log(recipe);
   } catch (err) {
     alert(err);
   }
