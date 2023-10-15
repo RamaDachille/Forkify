@@ -23,5 +23,6 @@ export const loadRecipe = async function (id) {
     };
   } catch (err) {
     console.error('Model:', err);
+    throw err
   }
 };
